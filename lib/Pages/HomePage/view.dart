@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/Widgets/slide_animation.dart';
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
@@ -19,7 +20,7 @@ class _HomePage extends State<HomePageView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(),
-        body: animatedListView(context),
+        body: animatedListView(),
         floatingActionButton: floatingActionButton());
   }
 
@@ -30,15 +31,14 @@ class _HomePage extends State<HomePageView> {
     );
   }
 
-  AnimatedList animatedListView(context) {
+  AnimatedList animatedListView() {
     return AnimatedList(
-      key: widget.viewModel.animatedListKey,
-      initialItemCount: widget.viewModel.items.length,
-      itemBuilder: (context, index, animation) {
-        var e = widget.viewModel.items[index];
-        return SizeTransition(sizeFactor: animation, child: listTile(e));
-      },
-    );
+        key: widget.viewModel.animatedListKey,
+        initialItemCount: widget.viewModel.items.length,
+        itemBuilder: (context, index, animation) {
+          var e = widget.viewModel.items[index];
+          return MyAnimations.slideTransition(animation, listTile(e));
+        });
   }
 
   ListView listView() {
