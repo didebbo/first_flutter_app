@@ -43,13 +43,6 @@ class AnimationProvider {
     return _fadeInTransition(parent, _slideInTransition(parent, child));
   }
 
-  Widget dismissableFadeInAndSlideInTransition(
-      Key key, Animation<double> parent, Widget child) {
-    return Dismissible(
-        key: key,
-        child: _fadeInTransition(parent, _slideInTransition(parent, child)));
-  }
-
   Widget fadeOutAndSlideOutTransition(Animation<double> parent, Widget child) {
     return _fadeOutTransition(parent, _slideOutTransition(parent, child));
   }

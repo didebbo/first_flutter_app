@@ -38,7 +38,7 @@ class _HomePage extends State<HomePageView> {
         itemBuilder: (context, index, animation) {
           var e = widget.viewModel.items[index];
           return AnimationProvider()
-              .fadeInAndSlideInTransition(animation, listTile(e));
+              .fadeInAndSlideInTransition(animation, tile(e));
         });
   }
 
@@ -48,10 +48,26 @@ class _HomePage extends State<HomePageView> {
     );
   }
 
-  List<ListTile> listTileChildren() =>
-      widget.viewModel.items.map((e) => listTile(e)).toList();
+  List<Row> listTileChildren() =>
+      widget.viewModel.items.map((e) => tile(e)).toList();
 
-  ListTile listTile(element) {
+  Row tile(Item element) {
+    return Row(
+      children: [
+        CircleAvatar(
+          backgroundColor: element.avatarColor,
+          radius: 20,
+        ),
+        Column(children: [
+          Text(element.name),
+          Text(element.subTitle()),
+        ]),
+        iconsRow(element)
+      ],
+    );
+  }
+
+  ListTile listTile(Item element) {
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: element.avatarColor,
@@ -59,8 +75,12 @@ class _HomePage extends State<HomePageView> {
       ),
       title: Text(element.name),
       subtitle: Text(element.subTitle()),
-      trailing: deleteIcon(element),
+      trailing: iconsRow(element),
     );
+  }
+
+  Row iconsRow(Item forItem) {
+    return Row(children: [favouriteIcon(forItem), deleteIcon(forItem)]);
   }
 
   IconButton favouriteIcon(Item forItem) {
@@ -75,7 +95,7 @@ class _HomePage extends State<HomePageView> {
 
   IconButton deleteIcon(Item forItem) {
     onPressed() => setState(
-        () => widget.viewModel.onPressDeleteIcon(forItem, listTile(forItem)));
+        () => widget.viewModel.onPressDeleteIcon(forItem, tile(forItem)));
 
     return IconButton(
         onPressed: onPressed,

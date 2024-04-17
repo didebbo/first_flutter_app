@@ -26,11 +26,11 @@ class HomePageViewModel {
 
   removeItem(Item item, Widget widget) {
     var index = items.indexWhere((element) => element.id == item.id);
-    items.removeAt(index);
-    animatedListKey.currentState?.removeItem(
-        index,
-        (context, animation) => AnimationProvider()
-            .fadeOutAndSlideOutTransition(animation, widget));
+    animatedListKey.currentState?.removeItem(index, (context, animation) {
+      items.removeAt(index);
+      return AnimationProvider()
+          .fadeOutAndSlideOutTransition(animation, widget);
+    });
   }
 
   addRandomItem() {
