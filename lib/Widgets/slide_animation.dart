@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class AnimationProvider {
   Animation<Offset> _animationOffsetIn(Animation<double> parent) {
     return Tween<Offset>(
-      begin: const Offset(0, -0.2),
+      begin: const Offset(-0.2, 0),
       end: const Offset(0, 0),
     ).animate(parent);
   }
 
   Animation<Offset> _animationOffsetOut(Animation<double> parent) {
     return Tween<Offset>(
-      begin: const Offset(0, 0),
+      begin: const Offset(-0.2, 0),
       end: const Offset(0, 0),
     ).animate(parent);
   }
@@ -20,7 +20,7 @@ class AnimationProvider {
   }
 
   Animation<double> _animationOpacityOut(Animation<double> parent) {
-    return Tween<double>(begin: 1, end: 0).animate(parent);
+    return Tween<double>(begin: 0, end: 1).animate(parent);
   }
 
   SlideTransition _slideInTransition(Animation<double> parent, Widget child) {
