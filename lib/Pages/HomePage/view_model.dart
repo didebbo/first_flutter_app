@@ -3,35 +3,30 @@ import 'package:first_flutter_app/Models/item_model.dart';
 import 'package:logger/logger.dart';
 
 class HomePageViewModel {
-  HomePageViewModel({required this.appBarTitle, required this.appBarColor});
+  HomePageViewModel(
+      {required this.appBarTitle,
+      required this.appBarColor,
+      required this.items});
 
   final String appBarTitle;
   final Color appBarColor;
-  List<Item> items = [];
+  List<Item> items;
 
   final Logger logger = Logger();
 
   final GlobalKey<AnimatedListState> animatedListKey = GlobalKey();
 
-  insertItem(Item item, int at) {
-    if (animatedListKey.currentState != null) {
-      logger.d("insertItem at $at position");
-      items.insert(at, item);
-      animatedListKey.currentState
-          ?.insertItem(at, duration: const Duration(milliseconds: 200));
-    }
-  }
-
-  setItems() {
-    items.asMap().forEach((index, element) {
-      insertItem(element, index);
-    });
+  insertItem(Item item, int at, [int milliseconds = 0]) {
+    logger.d("insertItem at $at position");
+    items.insert(at, item);
+    animatedListKey.currentState
+        ?.insertItem(at, duration: Duration(milliseconds: milliseconds));
   }
 
   addRandomItem() {
     var item = Items.getRandomItem();
     var at = items.length;
-    insertItem(item, at);
+    insertItem(item, at, 200);
   }
 
   onPressIconFavorite(Item forItem) {

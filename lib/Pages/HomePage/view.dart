@@ -33,6 +33,7 @@ class _HomePage extends State<HomePageView> {
   AnimatedList animatedListView(context) {
     return AnimatedList(
       key: widget.viewModel.animatedListKey,
+      initialItemCount: widget.viewModel.items.length,
       itemBuilder: (context, index, animation) {
         var e = widget.viewModel.items[index];
         return SizeTransition(sizeFactor: animation, child: listTile(e));

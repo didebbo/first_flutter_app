@@ -21,5 +21,7 @@ class MyApp extends StatelessWidget {
   }
 
   HomePageViewModel homepageViewModel() => HomePageViewModel(
-      appBarTitle: "My Favorite Friends", appBarColor: Colors.pink.shade50);
+      appBarTitle: "My Favorite Friends",
+      appBarColor: Colors.pink.shade50,
+      items: Items.items);
 }
