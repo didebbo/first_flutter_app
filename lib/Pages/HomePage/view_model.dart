@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/Widgets/slide_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:first_flutter_app/Models/item_model.dart';
 import 'package:logger/logger.dart';
@@ -26,8 +27,10 @@ class HomePageViewModel {
   removeItem(Item item, Widget widget) {
     var index = items.indexWhere((element) => element.id == item.id);
     items.removeAt(index);
-    animatedListKey.currentState
-        ?.removeItem(index, (context, animation) => widget);
+    animatedListKey.currentState?.removeItem(
+        index,
+        (context, animation) => AnimationProvider()
+            .fadeOutAndSlideOutTransition(animation, widget));
   }
 
   addRandomItem() {
