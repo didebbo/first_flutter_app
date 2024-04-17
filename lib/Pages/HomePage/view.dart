@@ -37,7 +37,10 @@ class _HomePage extends State<HomePageView> {
         initialItemCount: widget.viewModel.items.length,
         itemBuilder: (context, index, animation) {
           var e = widget.viewModel.items[index];
-          return MyAnimations.slideTransition(animation, listTile(e));
+          var _animation = SlideOpacityAnimation();
+
+          return _animation.fadeAndSlideTransition(animation, listTile(e));
+          //return MyAnimations.slideTransition(animation, listTile(e));
         });
   }
 
