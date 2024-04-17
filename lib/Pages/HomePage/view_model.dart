@@ -23,13 +23,20 @@ class HomePageViewModel {
         ?.insertItem(at, duration: Duration(milliseconds: milliseconds));
   }
 
+  removeItem(Item item, Widget widget) {
+    var index = items.indexWhere((element) => element.id == item.id);
+    items.removeAt(index);
+    animatedListKey.currentState
+        ?.removeItem(index, (context, animation) => widget);
+  }
+
   addRandomItem() {
     var item = Items.getRandomItem();
     var at = items.length;
     insertItem(item, at, 200);
   }
 
-  onPressIconFavorite(Item forItem) {
+  onPressFavoriteIcon(Item forItem) {
     items = items.map((element) {
       if (forItem.id != element.id) {
         return element;
@@ -38,5 +45,9 @@ class HomePageViewModel {
       newelement.isFavorite = !newelement.isFavorite;
       return newelement;
     }).toList();
+  }
+
+  onPressDeleteIcon(Item forItem, Widget onWidget) {
+    removeItem(forItem, onWidget);
   }
 }

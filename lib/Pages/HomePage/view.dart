@@ -60,18 +60,27 @@ class _HomePage extends State<HomePageView> {
       ),
       title: Text(element.name),
       subtitle: Text(element.subTitle()),
-      trailing: iconFavourite(element),
+      trailing: deleteIcon(element),
     );
   }
 
-  IconButton iconFavourite(Item forItem) {
+  IconButton favouriteIcon(Item forItem) {
     onPressed() =>
-        setState(() => widget.viewModel.onPressIconFavorite(forItem));
+        setState(() => widget.viewModel.onPressFavoriteIcon(forItem));
 
     return IconButton(
         onPressed: onPressed,
         icon: Icon(Icons.favorite,
             color: forItem.isFavorite ? Colors.red[400] : Colors.grey));
+  }
+
+  IconButton deleteIcon(Item forItem) {
+    onPressed() => setState(
+        () => widget.viewModel.onPressDeleteIcon(forItem, listTile(forItem)));
+
+    return IconButton(
+        onPressed: onPressed,
+        icon: Icon(Icons.delete, color: Colors.pink[800]));
   }
 
   FloatingActionButton floatingActionButton() {
