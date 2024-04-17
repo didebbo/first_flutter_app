@@ -37,9 +37,8 @@ class _HomePage extends State<HomePageView> {
         initialItemCount: widget.viewModel.items.length,
         itemBuilder: (context, index, animation) {
           var e = widget.viewModel.items[index];
-          var _animation = AnimationProvider();
-
-          return _animation.fadeInAndSlideInTransition(animation, listTile(e));
+          return AnimationProvider().dismissableFadeInAndSlideInTransition(
+              Key(e.id), animation, listTile(e));
         });
   }
 
