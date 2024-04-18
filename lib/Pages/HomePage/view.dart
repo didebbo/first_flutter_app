@@ -33,6 +33,7 @@ class _HomePage extends State<HomePageView> {
 
   Widget animatedListView() {
     return Container(
+        padding: const EdgeInsets.all(10),
         child: AnimatedList(
             key: widget.viewModel.animatedListKey,
             initialItemCount: widget.viewModel.items.length,
@@ -42,7 +43,11 @@ class _HomePage extends State<HomePageView> {
                   context: context,
                   index: index,
                   animation: animation,
-                  item: item);
+                  item: item,
+                  onPressFavoriteIcon: () => setState(
+                      () => widget.viewModel.onPressFavoriteIcon(item)),
+                  onPressDeleteIcon: () => setState(() =>
+                      widget.viewModel.onPressDeleteIcon(item, rowTile(item))));
             }));
   }
 

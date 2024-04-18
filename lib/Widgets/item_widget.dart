@@ -1,20 +1,23 @@
 import 'package:first_flutter_app/Models/item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SlideInItemListWidget extends StatelessWidget {
-  const SlideInItemListWidget(
+  SlideInItemListWidget(
       {super.key,
       required this.context,
       required this.index,
       required this.animation,
-      required this.item});
+      required this.item,
+      required this.onPressFavoriteIcon,
+      required this.onPressDeleteIcon});
 
   final BuildContext context;
   final int index;
   final Animation<double> animation;
   final Item item;
+
+  final VoidCallback onPressFavoriteIcon;
+  final VoidCallback onPressDeleteIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +38,32 @@ class SlideInItemListWidget extends StatelessWidget {
   }
 
   Widget row() {
-    return Row(children: [infoColumn()]);
+    return Container(
+        margin: const EdgeInsets.only(bottom: 20),
+        color: Colors.amber[100],
+        child: Row(children: [infoColumn(), actions()]));
   }
 
   Widget infoColumn() {
-    return Column(children: [Text(item.name), Text(item.subTitle())]);
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [Text(item.name), Text(item.subTitle())]);
+  }
+
+  Widget actions() {
+    return Row(children: [favouriteIcon(), deleteIcon()]);
+  }
+
+  IconButton favouriteIcon() {
+    return IconButton(
+        onPressed: onPressFavoriteIcon,
+        icon: Icon(Icons.favorite,
+            color: item.isFavorite ? Colors.red[400] : Colors.grey));
+  }
+
+  IconButton deleteIcon() {
+    return IconButton(
+        onPressed: onPressDeleteIcon,
+        icon: Icon(Icons.delete, color: Colors.pink[800]));
   }
 }
