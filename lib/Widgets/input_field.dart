@@ -12,30 +12,34 @@ class InputField extends StatelessWidget {
         right: 0,
         left: 0,
         child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             color: backgroundColor,
             alignment: Alignment.center,
-            child: Row(children: [inputField("Nome")])));
+            child: Row(children: [inputField("Nome"), inputField("Cognome")])));
   }
 
   Widget inputField(String label) {
     return Expanded(
-        child: TextField(
-            decoration: InputDecoration(
-                hoverColor: Colors.yellow.withAlpha(50),
-                labelText: label,
-                labelStyle: TextStyle(
-                  color: Colors.black.withAlpha(100),
-                ),
-                filled: true,
-                enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.pink.shade200, width: 1),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
-                focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.pink.shade400, width: 1.2),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
-                fillColor: Colors.white)));
+        child: Container(
+            margin: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            child: TextField(
+                decoration: InputDecoration(
+                    hoverColor: Colors.yellow.withAlpha(50),
+                    labelText: label,
+                    labelStyle: TextStyle(
+                      color: Colors.black.withAlpha(100),
+                    ),
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.pink.shade200, width: 1),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.pink.shade400, width: 1.2),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10))),
+                    fillColor: Colors.white))));
   }
 }
