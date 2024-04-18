@@ -66,12 +66,14 @@ class Items {
   static Item getRandomItem() {
     String name = names[Random().nextInt(names.length)];
     String surname = surnames[Random().nextInt(surnames.length)];
-    Color avatarColor =
-        Colors.primaries[Random().nextInt(Colors.primaries.length)];
+    Color avatarColor = randomColor();
     return Item(
         avatarColor: avatarColor,
         name: "$name",
         surname: "$surname",
         isFavorite: false);
   }
+
+  static Color randomColor() =>
+      Colors.primaries[Random().nextInt(Colors.primaries.length)];
 }
