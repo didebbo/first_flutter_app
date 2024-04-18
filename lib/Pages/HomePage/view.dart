@@ -39,79 +39,23 @@ class _HomePage extends State<HomePageView> {
             initialItemCount: widget.viewModel.items.length,
             itemBuilder: (context, index, animation) {
               var item = widget.viewModel.items[index];
-              return SlideInItemListWidget(
-                  context: context,
-                  index: index,
-                  animation: animation,
-                  item: item,
-                  onPressFavoriteIcon: () => setState(
-                      () => widget.viewModel.onPressFavoriteIcon(item)),
-                  onPressDeleteIcon: () => setState(() =>
-                      widget.viewModel.onPressDeleteIcon(item, rowTile(item))));
+              return animatedListItemView(context, index, animation, item);
             }));
   }
 
-  ListView listView() {
-    return ListView(
-      children: listTileChildren(),
+  AnimatedListItemView animatedListItemView(
+      BuildContext context, int index, Animation<double> animation, Item item) {
+    return AnimatedListItemView(
+      context: context,
+      index: index,
+      animation: animation,
+      item: item,
+      onPressFavoriteIcon: () =>
+          setState(() => widget.viewModel.onPressFavoriteIcon(item)),
+      onPressDeleteIcon: () => setState(() => widget.viewModel
+          .onPressDeleteIcon(
+              item, animatedListItemView(context, index, animation, item))),
     );
-  }
-
-  List<Widget> listTileChildren() =>
-      widget.viewModel.items.map((e) => rowTile(e)).toList();
-
-  Widget rowTile(Item element) {
-    return Padding(
-        padding: const EdgeInsets.only(top: 10, left: 10),
-        child: Row(
-          children: [
-            CircleAvatar(
-              backgroundColor: element.avatarColor,
-              radius: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Column(
-                  children: [Text(element.name), Text(element.subTitle())]),
-            ),
-            iconsRow(element)
-          ],
-        ));
-  }
-
-  ListTile listTile(Item element) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: element.avatarColor,
-        radius: 20,
-      ),
-      title: Text(element.name),
-      subtitle: Text(element.subTitle()),
-      trailing: iconsRow(element),
-    );
-  }
-
-  Row iconsRow(Item forItem) {
-    return Row(children: [favouriteIcon(forItem), deleteIcon(forItem)]);
-  }
-
-  IconButton favouriteIcon(Item forItem) {
-    onPressed() =>
-        setState(() => widget.viewModel.onPressFavoriteIcon(forItem));
-
-    return IconButton(
-        onPressed: onPressed,
-        icon: Icon(Icons.favorite,
-            color: forItem.isFavorite ? Colors.red[400] : Colors.grey));
-  }
-
-  IconButton deleteIcon(Item forItem) {
-    onPressed() => setState(
-        () => widget.viewModel.onPressDeleteIcon(forItem, rowTile(forItem)));
-
-    return IconButton(
-        onPressed: onPressed,
-        icon: Icon(Icons.delete, color: Colors.pink[800]));
   }
 
   FloatingActionButton floatingActionButton() {

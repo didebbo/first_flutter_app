@@ -2,8 +2,8 @@ import 'package:first_flutter_app/Models/item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SlideInItemListWidget extends StatelessWidget {
-  const SlideInItemListWidget(
+class AnimatedListItemView extends StatelessWidget {
+  const AnimatedListItemView(
       {super.key,
       required this.context,
       required this.index,
