@@ -12,7 +12,7 @@ class InputField extends StatelessWidget {
         right: 0,
         left: 0,
         child: Container(
-          constraints: const BoxConstraints(maxHeight: 85),
+          height: 85,
           padding: const EdgeInsets.all(20),
           color: backgroundColor,
           child: Row(children: [
@@ -29,8 +29,6 @@ class InputField extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             child: TextField(
                 decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: double.infinity),
                     hoverColor: Colors.yellow.withAlpha(50),
                     labelText: label,
                     labelStyle: TextStyle(
