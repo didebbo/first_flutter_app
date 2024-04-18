@@ -15,19 +15,27 @@ class InputField extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             color: backgroundColor,
             alignment: Alignment.center,
-            child: TextField(
-                decoration: InputDecoration(
-                    prefix: const Text("Nome: "),
-                    suffixIcon: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.pink[100],
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: const Icon(Icons.add)),
-                    filled: true,
-                    border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    fillColor: Colors.white,
-                    hintText: "Inputtext..."))));
+            child: Row(children: [inputField("Nome")])));
+  }
+
+  Widget inputField(String label) {
+    return Expanded(
+        child: TextField(
+            decoration: InputDecoration(
+                hoverColor: Colors.yellow.withAlpha(50),
+                labelText: label,
+                labelStyle: TextStyle(
+                  color: Colors.black.withAlpha(100),
+                ),
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.pink.shade200, width: 1),
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+                focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.pink.shade400, width: 1.2),
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+                fillColor: Colors.white)));
   }
 }
