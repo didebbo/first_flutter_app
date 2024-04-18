@@ -12,16 +12,20 @@ class InputField extends StatelessWidget {
         right: 0,
         left: 0,
         child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            color: backgroundColor,
-            alignment: Alignment.center,
-            child: Row(children: [inputField("Nome"), inputField("Cognome")])));
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          color: backgroundColor,
+          child: Row(children: [
+            inputField("Nome"),
+            inputField("Cognome"),
+            confirmButton()
+          ]),
+        ));
   }
 
   Widget inputField(String label) {
     return Expanded(
         child: Container(
-            margin: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             child: TextField(
                 decoration: InputDecoration(
                     hoverColor: Colors.yellow.withAlpha(50),
@@ -41,5 +45,9 @@ class InputField extends StatelessWidget {
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10))),
                     fillColor: Colors.white))));
+  }
+
+  Widget confirmButton() {
+    return Container(color: Colors.pink, child: const Text("Provaaa"));
   }
 }
