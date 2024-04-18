@@ -47,7 +47,7 @@ class AnimatedListItemView extends StatelessWidget {
     return Container(
         padding: const EdgeInsets.only(right: 20),
         child: CircleAvatar(
-          backgroundColor: item.avatarColor,
+          backgroundColor: item.avatarColor.withAlpha(200),
           radius: 20,
         ));
   }
