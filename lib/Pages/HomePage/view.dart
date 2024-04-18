@@ -20,7 +20,7 @@ class _HomePage extends State<HomePageView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(),
-        body: animatedListView(),
+        body: body(),
         floatingActionButton: floatingActionButton());
   }
 
@@ -29,6 +29,10 @@ class _HomePage extends State<HomePageView> {
       title: Text(widget.viewModel.appBarTitle),
       backgroundColor: widget.viewModel.appBarColor,
     );
+  }
+
+  Widget body() {
+    return Stack(children: [animatedListView()]);
   }
 
   Widget animatedListView() {
