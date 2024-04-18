@@ -56,7 +56,7 @@ class AnimatedListItemView extends StatelessWidget {
     return Expanded(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           item.name),
       Text(
           style: const TextStyle(
