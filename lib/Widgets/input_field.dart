@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatefulWidget {
-  const InputField({super.key, required this.backgroundColor});
+  const InputField({super.key, required this.onConfirm});
 
-  final Color backgroundColor;
+  final Function(String) onConfirm;
 
   @override
   State<StatefulWidget> createState() {
@@ -24,10 +24,10 @@ class _InputField extends State<InputField> {
         child: Container(
           height: 85,
           padding: const EdgeInsets.all(20),
-          color: widget.backgroundColor,
+          color: Colors.pink[100],
           child: Row(children: [
-            inputField("Nome", (val) => name = val),
-            inputField("Cognome", (val) => surname = val),
+            inputField("Nome", setName),
+            inputField("Cognome", setSurname),
             confirmButton()
           ]),
         ));
@@ -66,7 +66,15 @@ class _InputField extends State<InputField> {
             color: Colors.pink,
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: IconButton(
-            onPressed: () => {print("Name is $name $surname")},
+            onPressed: onConfirmButton,
             icon: Icon(color: Colors.pink[50], Icons.send)));
+  }
+
+  setName(String str) => name = str;
+  setSurname(String str) => surname = str;
+  onConfirmButton() {
+    if (name.isNotEmpty && surname.isNotEmpty) {
+      widget.onConfirm("$name $surname");
+    }
   }
 }

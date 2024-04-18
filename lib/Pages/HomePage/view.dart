@@ -34,10 +34,9 @@ class _HomePage extends State<HomePageView> {
   }
 
   Widget body() {
-    return Stack(children: [
-      animatedListView(),
-      InputField(backgroundColor: widget.viewModel.appBarColor)
-    ]);
+    onConfirm(String value) => print("The name is: $value");
+    return Stack(
+        children: [animatedListView(), InputField(onConfirm: onConfirm)]);
   }
 
   Widget animatedListView() {
