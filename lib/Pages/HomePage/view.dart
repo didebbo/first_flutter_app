@@ -20,9 +20,10 @@ class _HomePage extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar(),
-        body: body(),
-        floatingActionButton: floatingActionButton());
+      appBar: appBar(),
+      body: body(),
+      //floatingActionButton: floatingActionButton()
+    );
   }
 
   AppBar appBar() {
