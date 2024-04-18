@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class InputField extends StatefulWidget {
   const InputField({super.key, required this.onConfirm});
 
-  final Function(String) onConfirm;
+  final Function({required String name, required String surname}) onConfirm;
 
   @override
   State<StatefulWidget> createState() {
@@ -72,7 +72,8 @@ class _InputField extends State<InputField> {
 
   onConfirmButton() {
     if (nameController.text.isNotEmpty && surnameController.text.isNotEmpty) {
-      widget.onConfirm("${nameController.text} ${surnameController.text}");
+      widget.onConfirm(
+          name: nameController.text, surname: surnameController.text);
       nameController.text = "";
       surnameController.text = "";
     }
