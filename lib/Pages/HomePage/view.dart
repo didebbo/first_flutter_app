@@ -20,10 +20,10 @@ class _HomePage extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
-      body: body(),
-      //floatingActionButton: floatingActionButton()
-    );
+        appBar: appBar(),
+        body: body(),
+        floatingActionButton:
+            !widget.viewModel.editMode ? floatingActionButton() : null);
   }
 
   AppBar appBar() {
@@ -34,10 +34,13 @@ class _HomePage extends State<HomePageView> {
   }
 
   Widget body() {
-    onConfirm({required String name, required String surname}) =>
-        widget.viewModel.addItem(name: name, surname: surname);
-    return Stack(
-        children: [animatedListView(), InputField(onConfirm: onConfirm)]);
+    onConfirm({required String name, required String surname}) => setState(() {
+          widget.viewModel.addItem(name: name, surname: surname);
+        });
+    return Stack(children: [
+      animatedListView(),
+      if (widget.viewModel.editMode) InputField(onConfirm: onConfirm)
+    ]);
   }
 
   Widget animatedListView() {
@@ -68,7 +71,7 @@ class _HomePage extends State<HomePageView> {
   }
 
   FloatingActionButton floatingActionButton() {
-    onPressed() => setState(() => widget.viewModel.addRandomItem());
+    onPressed() => setState(() => widget.viewModel.setEditMode(true));
 
     return FloatingActionButton(
         onPressed: onPressed,

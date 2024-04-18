@@ -16,6 +16,7 @@ class HomePageViewModel {
   final Logger logger = Logger();
 
   final GlobalKey<AnimatedListState> animatedListKey = GlobalKey();
+  bool editMode = false;
 
   insertItem(Item item, int at, [int milliseconds = 0]) {
     logger.d("insertItem at $at position");
@@ -47,6 +48,7 @@ class HomePageViewModel {
         isFavorite: false);
     var at = items.length;
     insertItem(item, at, 200);
+    setEditMode(false);
   }
 
   onPressFavoriteIcon(Item forItem) {
@@ -63,4 +65,6 @@ class HomePageViewModel {
   onPressDeleteIcon(Item forItem, Widget onWidget) {
     removeItem(forItem, onWidget);
   }
+
+  setEditMode(bool editmode) => editMode = editmode;
 }
