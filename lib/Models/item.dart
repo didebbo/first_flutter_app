@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:math';
@@ -69,8 +67,8 @@ class Items {
     Color avatarColor = randomColor();
     return Item(
         avatarColor: avatarColor,
-        name: "$name",
-        surname: "$surname",
+        name: name,
+        surname: surname,
         isFavorite: false);
   }
 
