@@ -12,7 +12,8 @@ class InputField extends StatelessWidget {
         right: 0,
         left: 0,
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          constraints: const BoxConstraints(maxHeight: 85),
+          padding: const EdgeInsets.all(20),
           color: backgroundColor,
           child: Row(children: [
             inputField("Nome"),
@@ -28,6 +29,8 @@ class InputField extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             child: TextField(
                 decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: double.infinity),
                     hoverColor: Colors.yellow.withAlpha(50),
                     labelText: label,
                     labelStyle: TextStyle(
@@ -48,6 +51,11 @@ class InputField extends StatelessWidget {
   }
 
   Widget confirmButton() {
-    return Container(color: Colors.pink, child: const Text("Provaaa"));
+    return Column(
+      children: [
+        Expanded(
+            child: Container(color: Colors.pink, child: const Text("Provaaa")))
+      ],
+    );
   }
 }
