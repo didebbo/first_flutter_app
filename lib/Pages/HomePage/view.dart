@@ -37,7 +37,7 @@ class _HomePage extends State<HomePageView> {
 
   Widget animatedListView() {
     return Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
         child: AnimatedList(
             key: widget.viewModel.animatedListKey,
             initialItemCount: widget.viewModel.items.length,
