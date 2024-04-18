@@ -30,15 +30,30 @@ class Items {
   ];
 
   static List<String> names = [
-    "Mario",
-    "Giuseppe",
-    "Charlie",
-    "Luigi",
-    "Luca",
-    "Marco"
+    "Giovanni",
+    "Francesco",
+    "Alessandro",
+    "Matteo",
+    "Lorenzo",
+    "Davide",
+    "Riccardo",
+    "Fabio",
+    "Simone",
+    "Filippo"
   ];
 
-  static List<String> surnames = ["Rossi", "Verdi", "Brown", "Bianchi"];
+  static List<String> surnames = [
+    "Ricci",
+    "Moretti",
+    "Galli",
+    "Ferrari",
+    "Esposito",
+    "Romano",
+    "Conti",
+    "De Luca",
+    "Bruno",
+    "Marchetti"
+  ];
 
   static Item getRandomItem() {
     String name = names[Random().nextInt(names.length)];
