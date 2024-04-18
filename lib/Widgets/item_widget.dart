@@ -46,10 +46,16 @@ class AnimatedListItemView extends StatelessWidget {
   Widget avatarIcon() {
     return Container(
         padding: const EdgeInsets.only(right: 20),
-        child: CircleAvatar(
-          backgroundColor: item.avatarColor.withAlpha(200),
-          radius: 20,
-        ));
+        child: Stack(alignment: Alignment.center, children: [
+          CircleAvatar(
+            backgroundColor: item.avatarColor.withAlpha(100),
+            radius: 20,
+            child: Text(item.avatarName(),
+                softWrap: false,
+                style: TextStyle(
+                    fontSize: 14, color: item.avatarColor.withAlpha(255))),
+          )
+        ]));
   }
 
   Widget infoColumn() {
@@ -57,7 +63,7 @@ class AnimatedListItemView extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          item.name),
+          item.fullname()),
       Text(
           style: const TextStyle(
               fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black45),

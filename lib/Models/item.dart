@@ -1,17 +1,23 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:math';
 
 class Item {
   final String id = const Uuid().v4();
-  Color avatarColor;
-  String name;
-  String subTitle() => 'Ciao Sono $name';
+  final Color avatarColor;
+  final String name;
+  final String surname;
+  String subTitle() => 'Ciao Sono $name $surname';
+  String fullname() => '$name $surname';
+  String avatarName() => '${name[0].toUpperCase()}${surname[0].toUpperCase()}';
   bool isFavorite;
 
   Item(
       {required this.avatarColor,
       required this.name,
+      required this.surname,
       required this.isFavorite});
 }
 
@@ -19,12 +25,14 @@ class Items {
   static List<Item> items = [
     Item(
       avatarColor: Colors.red,
-      name: "Mario Rossi",
+      name: "Mario",
+      surname: "Rossi",
       isFavorite: false,
     ),
     Item(
       avatarColor: Colors.green,
-      name: "Giuseppe Verdi",
+      name: "Giuseppe",
+      surname: "Verdi",
       isFavorite: false,
     ),
   ];
@@ -61,6 +69,9 @@ class Items {
     Color avatarColor =
         Colors.primaries[Random().nextInt(Colors.primaries.length)];
     return Item(
-        avatarColor: avatarColor, name: "$name $surname", isFavorite: false);
+        avatarColor: avatarColor,
+        name: "$name",
+        surname: "$surname",
+        isFavorite: false);
   }
 }
