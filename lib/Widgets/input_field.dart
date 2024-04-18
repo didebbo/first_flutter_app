@@ -12,8 +12,8 @@ class InputField extends StatefulWidget {
 }
 
 class _InputField extends State<InputField> {
-  String name = "";
-  String surname = "";
+  TextEditingController nameController = TextEditingController();
+  TextEditingController surnameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +26,19 @@ class _InputField extends State<InputField> {
           padding: const EdgeInsets.all(20),
           color: Colors.pink[100],
           child: Row(children: [
-            inputField("Nome", setName),
-            inputField("Cognome", setSurname),
+            inputField("Nome", nameController),
+            inputField("Cognome", surnameController),
             confirmButton()
           ]),
         ));
   }
 
-  Widget inputField(String label, Function(String) onChanged) {
+  Widget inputField(String label, TextEditingController controller) {
     return Expanded(
         child: Container(
             margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             child: TextField(
+              controller: controller,
               decoration: InputDecoration(
                   hoverColor: Colors.yellow.withAlpha(50),
                   labelText: label,
@@ -56,7 +57,6 @@ class _InputField extends State<InputField> {
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10))),
                   fillColor: Colors.white),
-              onChanged: onChanged,
             )));
   }
 
@@ -70,11 +70,11 @@ class _InputField extends State<InputField> {
             icon: Icon(color: Colors.pink[50], Icons.send)));
   }
 
-  setName(String str) => name = str;
-  setSurname(String str) => surname = str;
   onConfirmButton() {
-    if (name.isNotEmpty && surname.isNotEmpty) {
-      widget.onConfirm("$name $surname");
+    if (nameController.text.isNotEmpty && surnameController.text.isNotEmpty) {
+      widget.onConfirm("${nameController.text} ${surnameController.text}");
+      nameController.text = "";
+      surnameController.text = "";
     }
   }
 }
