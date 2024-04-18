@@ -51,11 +51,12 @@ class InputField extends StatelessWidget {
   }
 
   Widget confirmButton() {
-    return Column(
-      children: [
-        Expanded(
-            child: Container(color: Colors.pink, child: const Text("Provaaa")))
-      ],
-    );
+    return Container(
+        decoration: const BoxDecoration(
+            color: Colors.pink,
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        child: IconButton(
+            onPressed: () => {},
+            icon: Icon(color: Colors.pink[50], Icons.send)));
   }
 }
