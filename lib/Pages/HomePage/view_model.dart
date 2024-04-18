@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:first_flutter_app/Widgets/Animations/animation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:first_flutter_app/Models/item.dart';
@@ -35,6 +37,16 @@ class HomePageViewModel {
 
   addRandomItem() {
     var item = Items.getRandomItem();
+    var at = items.length;
+    insertItem(item, at, 200);
+  }
+
+  addItem({required String name, required String surname}) {
+    var item = Item(
+        avatarColor: Items.randomColor(),
+        name: name,
+        surname: surname,
+        isFavorite: false);
     var at = items.length;
     insertItem(item, at, 200);
   }

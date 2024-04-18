@@ -35,7 +35,7 @@ class _HomePage extends State<HomePageView> {
 
   Widget body() {
     onConfirm({required String name, required String surname}) =>
-        print("The name is: $name $surname");
+        widget.viewModel.addItem(name: name, surname: surname);
     return Stack(
         children: [animatedListView(), InputField(onConfirm: onConfirm)]);
   }
