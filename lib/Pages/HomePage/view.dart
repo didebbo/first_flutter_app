@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:first_flutter_app/Pages/HomePage/view_model.dart';
 import 'package:first_flutter_app/Models/item.dart';
+import 'package:flutter/widgets.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key, required this.viewModel});
@@ -32,7 +33,7 @@ class _HomePage extends State<HomePageView> {
   }
 
   Widget body() {
-    return Stack(children: [animatedListView()]);
+    return Stack(children: [animatedListView(), inputField()]);
   }
 
   Widget animatedListView() {
@@ -45,6 +46,24 @@ class _HomePage extends State<HomePageView> {
               var item = widget.viewModel.items[index];
               return animatedListItemView(context, index, animation, item);
             }));
+  }
+
+  Widget inputField() {
+    return Positioned(
+        bottom: 0,
+        right: 0,
+        left: 0,
+        child: Container(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            color: Colors.transparent,
+            alignment: Alignment.center,
+            child: const TextField(
+                decoration: InputDecoration(
+                    filled: true,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    fillColor: Colors.white,
+                    hintText: "Inputtext..."))));
   }
 
   AnimatedListItemView animatedListItemView(
