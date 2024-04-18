@@ -1,5 +1,4 @@
 import 'package:first_flutter_app/Models/item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedListItemView extends StatelessWidget {
@@ -40,13 +39,13 @@ class AnimatedListItemView extends StatelessWidget {
 
   Widget row() {
     return Container(
-        margin: const EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 0),
         child: Row(children: [avatarIcon(), infoColumn(), actions()]));
   }
 
   Widget avatarIcon() {
     return Container(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.only(right: 20),
         child: CircleAvatar(
           backgroundColor: item.avatarColor,
           radius: 20,
