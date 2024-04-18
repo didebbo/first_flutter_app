@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
-class InputField extends StatelessWidget {
+class InputField extends StatefulWidget {
   const InputField({super.key, required this.backgroundColor});
 
   final Color backgroundColor;
+
+  @override
+  State<StatefulWidget> createState() {
+    return _InputField();
+  }
+}
+
+class _InputField extends State<InputField> {
+  late String name;
+  late String surname;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +24,7 @@ class InputField extends StatelessWidget {
         child: Container(
           height: 85,
           padding: const EdgeInsets.all(20),
-          color: backgroundColor,
+          color: widget.backgroundColor,
           child: Row(children: [
             inputField("Nome"),
             inputField("Cognome"),
