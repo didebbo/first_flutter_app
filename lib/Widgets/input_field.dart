@@ -13,27 +13,58 @@ class InputField extends StatefulWidget {
   }
 }
 
-class _InputField extends State<InputField> {
+class _InputField extends State<InputField>
+    with SingleTickerProviderStateMixin {
   TextEditingController nameController = TextEditingController();
   TextEditingController surnameController = TextEditingController();
 
+  late AnimationController _animationController;
+  late bool _visible;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
+
+    _animationController.addListener(() {
+      if (_animationController.value == 1.0) {
+        setState(() {
+          _visible = false;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    _visible = widget.editMode;
     return AnimatedPositioned(
-        duration: Duration(milliseconds: 100),
+        duration: const Duration(milliseconds: 200),
         bottom: widget.editMode ? 0 : -100,
         right: 0,
         left: 0,
-        child: Container(
-          height: 85,
-          padding: const EdgeInsets.all(20),
-          color: Colors.pink[100],
-          child: Row(children: [
-            inputField("Nome", nameController),
-            inputField("Cognome", surnameController),
-            confirmButton()
-          ]),
-        ));
+        child: Visibility(
+            visible: _visible,
+            child: Container(
+              height: 85,
+              padding: const EdgeInsets.all(20),
+              color: Colors.pink[100],
+              child: Row(children: [
+                inputField("Nome", nameController),
+                inputField("Cognome", surnameController),
+                confirmButton()
+              ]),
+            )));
   }
 
   Widget inputField(String label, TextEditingController controller) {
@@ -77,8 +108,8 @@ class _InputField extends State<InputField> {
     if (nameController.text.isNotEmpty && surnameController.text.isNotEmpty) {
       widget.onConfirm(
           name: nameController.text, surname: surnameController.text);
-      nameController.text = "";
-      surnameController.text = "";
+      nameController.clear();
+      surnameController.clear();
     }
   }
 }
