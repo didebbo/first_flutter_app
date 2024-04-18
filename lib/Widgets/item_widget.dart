@@ -2,7 +2,7 @@ import 'package:first_flutter_app/Models/item.dart';
 import 'package:flutter/material.dart';
 
 class SlideInItemListWidget extends StatelessWidget {
-  SlideInItemListWidget(
+  const SlideInItemListWidget(
       {super.key,
       required this.context,
       required this.index,
@@ -45,13 +45,18 @@ class SlideInItemListWidget extends StatelessWidget {
   }
 
   Widget infoColumn() {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [Text(item.name), Text(item.subTitle())]);
+    return Expanded(
+        child: Container(
+            color: Colors.blue[100],
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [Text(item.name), Text(item.subTitle())])));
   }
 
   Widget actions() {
-    return Row(children: [favouriteIcon(), deleteIcon()]);
+    return Container(
+        color: Colors.green[100],
+        child: Row(children: [favouriteIcon(), deleteIcon()]));
   }
 
   IconButton favouriteIcon() {
