@@ -54,9 +54,15 @@ class AnimatedListItemView extends StatelessWidget {
 
   Widget infoColumn() {
     return Expanded(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [Text(item.name), Text(item.subTitle())]));
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          item.name),
+      Text(
+          style: const TextStyle(
+              fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black45),
+          item.subTitle())
+    ]));
   }
 
   Widget actions() {
@@ -67,12 +73,12 @@ class AnimatedListItemView extends StatelessWidget {
     return IconButton(
         onPressed: onPressFavoriteIcon,
         icon: Icon(Icons.favorite,
-            color: item.isFavorite ? Colors.red[400] : Colors.grey));
+            color: item.isFavorite ? Colors.pink[200] : Colors.pink[50]));
   }
 
   IconButton deleteIcon() {
     return IconButton(
         onPressed: onPressDeleteIcon,
-        icon: Icon(Icons.delete, color: Colors.pink[800]));
+        icon: Icon(Icons.delete, color: Colors.pink[100]));
   }
 }
