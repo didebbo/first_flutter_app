@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/Widgets/input_field.dart';
 import 'package:first_flutter_app/Widgets/item_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,10 @@ class _HomePage extends State<HomePageView> {
   }
 
   Widget body() {
-    return Stack(children: [animatedListView(), inputField()]);
+    return Stack(children: [
+      animatedListView(),
+      InputField(backgroundColor: widget.viewModel.appBarColor)
+    ]);
   }
 
   Widget animatedListView() {
@@ -47,24 +51,6 @@ class _HomePage extends State<HomePageView> {
               var item = widget.viewModel.items[index];
               return animatedListItemView(context, index, animation, item);
             }));
-  }
-
-  Widget inputField() {
-    return Positioned(
-        bottom: 0,
-        right: 0,
-        left: 0,
-        child: Container(
-            padding: EdgeInsets.all(20),
-            color: widget.viewModel.appBarColor,
-            alignment: Alignment.center,
-            child: const TextField(
-                decoration: InputDecoration(
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    fillColor: Colors.white,
-                    hintText: "Inputtext..."))));
   }
 
   AnimatedListItemView animatedListItemView(
