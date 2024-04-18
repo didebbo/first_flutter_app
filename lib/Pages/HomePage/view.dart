@@ -1,8 +1,8 @@
-import 'package:first_flutter_app/Widgets/slide_animation.dart';
+import 'package:first_flutter_app/Widgets/item_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'view_model.dart';
-import '/Models/item_model.dart';
+import 'package:first_flutter_app/Pages/HomePage/view_model.dart';
+import 'package:first_flutter_app/Models/item.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key, required this.viewModel});
@@ -31,15 +31,19 @@ class _HomePage extends State<HomePageView> {
     );
   }
 
-  AnimatedList animatedListView() {
-    return AnimatedList(
-        key: widget.viewModel.animatedListKey,
-        initialItemCount: widget.viewModel.items.length,
-        itemBuilder: (context, index, animation) {
-          var e = widget.viewModel.items[index];
-          return AnimationProvider()
-              .fadeInAndSlideInTransition(animation, rowTile(e));
-        });
+  Widget animatedListView() {
+    return Container(
+        child: AnimatedList(
+            key: widget.viewModel.animatedListKey,
+            initialItemCount: widget.viewModel.items.length,
+            itemBuilder: (context, index, animation) {
+              var item = widget.viewModel.items[index];
+              return SlideInItemListWidget(
+                  context: context,
+                  index: index,
+                  animation: animation,
+                  item: item);
+            }));
   }
 
   ListView listView() {

@@ -1,6 +1,6 @@
-import 'package:first_flutter_app/Widgets/slide_animation.dart';
+import 'package:first_flutter_app/Widgets/Animations/animation_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:first_flutter_app/Models/item_model.dart';
+import 'package:first_flutter_app/Models/item.dart';
 import 'package:logger/logger.dart';
 
 class HomePageViewModel {

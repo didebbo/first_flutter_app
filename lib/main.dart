@@ -1,9 +1,9 @@
 // ignore_for_file: unused_import
-
-import 'package:first_flutter_app/Models/item_model.dart';
-import 'package:first_flutter_app/Pages/HomePage/view_model.dart';
 import 'package:flutter/material.dart';
-import 'Pages/index.dart';
+
+import 'package:first_flutter_app/Models/item.dart';
+import 'package:first_flutter_app/Pages/HomePage/view.dart';
+import 'package:first_flutter_app/Pages/HomePage/view_model.dart';
 
 void main() {
   runApp(const MyApp());
