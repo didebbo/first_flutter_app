@@ -1,4 +1,5 @@
 import 'package:first_flutter_app/Models/item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SlideInItemListWidget extends StatelessWidget {
@@ -40,23 +41,27 @@ class SlideInItemListWidget extends StatelessWidget {
   Widget row() {
     return Container(
         margin: const EdgeInsets.only(bottom: 20),
-        color: Colors.amber[100],
-        child: Row(children: [infoColumn(), actions()]));
+        child: Row(children: [avatarIcon(), infoColumn(), actions()]));
+  }
+
+  Widget avatarIcon() {
+    return Container(
+        padding: EdgeInsets.all(5),
+        child: CircleAvatar(
+          backgroundColor: item.avatarColor,
+          radius: 20,
+        ));
   }
 
   Widget infoColumn() {
     return Expanded(
-        child: Container(
-            color: Colors.blue[100],
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text(item.name), Text(item.subTitle())])));
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [Text(item.name), Text(item.subTitle())]));
   }
 
   Widget actions() {
-    return Container(
-        color: Colors.green[100],
-        child: Row(children: [favouriteIcon(), deleteIcon()]));
+    return Row(children: [favouriteIcon(), deleteIcon()]);
   }
 
   IconButton favouriteIcon() {
