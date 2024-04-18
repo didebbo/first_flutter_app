@@ -39,7 +39,7 @@ class _HomePage extends State<HomePageView> {
         });
     return Stack(children: [
       animatedListView(),
-      if (widget.viewModel.editMode) InputField(onConfirm: onConfirm)
+      InputField(onConfirm: onConfirm, editMode: widget.viewModel.editMode)
     ]);
   }
 

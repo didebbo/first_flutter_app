@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatefulWidget {
-  const InputField({super.key, required this.onConfirm});
+  const InputField(
+      {super.key, required this.onConfirm, required this.editMode});
 
   final Function({required String name, required String surname}) onConfirm;
+  final bool editMode;
 
   @override
   State<StatefulWidget> createState() {
@@ -17,8 +19,9 @@ class _InputField extends State<InputField> {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-        bottom: 0,
+    return AnimatedPositioned(
+        duration: Duration(milliseconds: 100),
+        bottom: widget.editMode ? 0 : -100,
         right: 0,
         left: 0,
         child: Container(
