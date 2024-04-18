@@ -54,8 +54,8 @@ class _HomePage extends State<HomePageView> {
         right: 0,
         left: 0,
         child: Container(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            color: Colors.transparent,
+            padding: EdgeInsets.all(20),
+            color: widget.viewModel.appBarColor,
             alignment: Alignment.center,
             child: const TextField(
                 decoration: InputDecoration(
