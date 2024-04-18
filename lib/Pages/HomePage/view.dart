@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:first_flutter_app/Pages/HomePage/view_model.dart';
 import 'package:first_flutter_app/Models/item.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key, required this.viewModel});
