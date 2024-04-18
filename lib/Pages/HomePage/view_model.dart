@@ -1,7 +1,7 @@
+import 'package:first_flutter_app/Utils/logger.dart';
 import 'package:first_flutter_app/Widgets/Animations/animation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:first_flutter_app/Models/item.dart';
-import 'package:logger/logger.dart';
 
 class HomePageViewModel {
   HomePageViewModel(
@@ -13,13 +13,11 @@ class HomePageViewModel {
   final Color appBarColor;
   List<Item> items;
 
-  final Logger logger = Logger();
-
   final GlobalKey<AnimatedListState> animatedListKey = GlobalKey();
   bool editMode = false;
 
   insertItem(Item item, int at, [int milliseconds = 0]) {
-    logger.d("insertItem at $at position");
+    Log.d("insertItem at $at position");
     items.insert(at, item);
     animatedListKey.currentState
         ?.insertItem(at, duration: Duration(milliseconds: milliseconds));
