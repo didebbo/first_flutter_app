@@ -8,7 +8,4 @@ La rapidità di sviluppo è davvero sorprendente. Anche nel realizzare component
 
 Mi piacerebbe poterlo usare a livello professionale per poterne scoprire il potenziale a livello macroscopico. 
 
-<video width="320" height="240" controls>
-  <source src="https://www.youtube.com/watch?v=tygfeYdU03c" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Preview](https://img.youtube.com/vi/tygfeYdU03c/0.jpg)](https://www.youtube.com/watch?v=tygfeYdU03c)
