@@ -40,8 +40,7 @@ class AnimatedListItemView extends StatelessWidget {
             radius: 20,
             child: Text(item.avatarName(),
                 softWrap: false,
-                style: TextStyle(
-                    fontSize: 14, color: item.avatarColor.withAlpha(255))),
+                style: TextStyle(fontSize: 14, color: item.avatarColor)),
           )
         ]));
   }
