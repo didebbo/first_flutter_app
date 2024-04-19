@@ -1,16 +1,14 @@
-# first_flutter_app
+# First Flutte App
 
-A new Flutter project.
+Recentemente ho avuto modo di provare **Flutter**, framework per lo sviluppo di applicazioni _mobile_, _desktop_ e _web_. Ho dovuto prendere famigliarità con il linguaggio **Dart** prima di metterci mano.
 
-## Getting Started
+Nonostante questo, devo dire che la <u>_curva di apprenditmento è stata davvero rapida_</u>.
 
-This project is a starting point for a Flutter application.
+La rapidità di sviluppo è davvero sorprendente. Anche nel realizzare componenti personalizzati, il framework offre strumenti che permettono quasi in tempo reale, di vedere un anteprima di ciò che stai sviluppando.
 
-A few resources to get you started if this is your first Flutter project:
+Mi piacerebbe poterlo usare a livello professionale per poterne scoprire il potenziale a livello macroscopico. 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<video width="320" height="240" controls>
+  <source src="preview/flutter_vid.mov" type="video/mov">
+  Your browser does not support the video tag.
+</video>
