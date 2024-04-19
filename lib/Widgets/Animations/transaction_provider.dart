@@ -8,13 +8,11 @@ class TransitionProvider {
     ).animate(animation);
   }
 
-  static Animation<double> _opacityFadeInAnimation(
-      Animation<double> animation) {
+  static Animation<double> _opacityAnimation(Animation<double> animation) {
     return Tween<double>(begin: 0, end: 1).animate(animation);
   }
 
-  static Animation<double> _opacityFadeOutAnimation(
-      Animation<double> animation) {
+  static Animation<double> _sizeAnimation(Animation<double> animation) {
     return Tween<double>(begin: 0, end: 1).animate(animation);
   }
 
@@ -25,27 +23,20 @@ class TransitionProvider {
     );
   }
 
-  static Widget fadeInTransition(Animation<double> animation, Widget child) {
+  static Widget fadeTransition(Animation<double> animation, Widget child) {
     return FadeTransition(
-      opacity: _opacityFadeInAnimation(animation),
+      opacity: _opacityAnimation(animation),
       child: child,
     );
   }
 
-  static Widget fadeOutTransition(Animation<double> animation, Widget child) {
-    return FadeTransition(
-      opacity: _opacityFadeOutAnimation(animation),
-      child: child,
-    );
+  static Widget sizeTransition(Animation<double> animation, Widget child) {
+    return SizeTransition(sizeFactor: _sizeAnimation(animation), child: child);
   }
 
-  static Widget fadeInAndSlideInTransition(
+  static Widget fadeSlideAndSizeTransition(
       Animation<double> animation, Widget child) {
-    return fadeInTransition(animation, slideTransaction(animation, child));
-  }
-
-  static Widget fadeOutAndSlideOutTransition(
-      Animation<double> animation, Widget child) {
-    return fadeOutTransition(animation, slideTransaction(animation, child));
+    return fadeTransition(animation,
+        slideTransaction(animation, sizeTransition(animation, child)));
   }
 }

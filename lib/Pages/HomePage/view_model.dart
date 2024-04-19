@@ -27,7 +27,7 @@ class HomePageViewModel {
     var index = items.indexWhere((element) => element.id == item.id);
     animatedListKey.currentState?.removeItem(index, (context, animation) {
       items.removeAt(index);
-      return TransitionProvider.fadeOutAndSlideOutTransition(animation, widget);
+      return TransitionProvider.fadeSlideAndSizeTransition(animation, widget);
     });
   }
 
