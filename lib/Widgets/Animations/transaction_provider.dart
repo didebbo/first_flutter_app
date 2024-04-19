@@ -16,7 +16,7 @@ class TransitionProvider {
     return Tween<double>(begin: 0, end: 1).animate(animation);
   }
 
-  static Widget slideTransaction(Animation<double> animation, Widget child) {
+  static Widget slideTransition(Animation<double> animation, Widget child) {
     return SlideTransition(
       position: _positionAnimation(animation),
       child: child,
@@ -34,9 +34,13 @@ class TransitionProvider {
     return SizeTransition(sizeFactor: _sizeAnimation(animation), child: child);
   }
 
-  static Widget fadeSlideAndSizeTransition(
+  static Widget fadeAndSlideTransition(
       Animation<double> animation, Widget child) {
-    return fadeTransition(animation,
-        slideTransaction(animation, sizeTransition(animation, child)));
+    return fadeTransition(animation, slideTransition(animation, child));
+  }
+
+  static Widget fadeAndSizeTransition(
+      Animation<double> animation, Widget child) {
+    return fadeTransition(animation, sizeTransition(animation, child));
   }
 }

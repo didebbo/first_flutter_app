@@ -33,6 +33,7 @@ class Items {
       surname: "Verdi",
       isFavorite: false,
     ),
+    for (int i = 1; i <= 10; i++) getRandomItem(),
   ];
 
   static List<String> names = [

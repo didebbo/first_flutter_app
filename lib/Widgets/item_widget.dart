@@ -22,7 +22,7 @@ class AnimatedListItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TransitionProvider.fadeSlideAndSizeTransition(animation, row());
+    return TransitionProvider.fadeAndSlideTransition(animation, row());
   }
 
   Widget row() {
