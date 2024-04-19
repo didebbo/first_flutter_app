@@ -9,6 +9,6 @@ La rapidità di sviluppo è davvero sorprendente. Anche nel realizzare component
 Mi piacerebbe poterlo usare a livello professionale per poterne scoprire il potenziale a livello macroscopico. 
 
 <video width="320" height="240" controls>
-  <source src="preview/flutter_vid.mov" type="video/mov">
+  <source src="https://www.youtube.com/watch?v=tygfeYdU03c" type="video/mp4">
   Your browser does not support the video tag.
 </video>
