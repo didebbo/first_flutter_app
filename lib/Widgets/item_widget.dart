@@ -1,4 +1,5 @@
 import 'package:first_flutter_app/Models/item.dart';
+import 'package:first_flutter_app/Widgets/Animations/transaction_provider.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedListItemView extends StatelessWidget {
@@ -21,20 +22,7 @@ class AnimatedListItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FadeTransition(
-        opacity: Tween<double>(begin: 0, end: 1).animate(animation),
-        child: fadeInSlideIn());
-  }
-
-  Widget fadeInSlideIn() {
-    return FadeTransition(
-        opacity: Tween<double>(begin: 0, end: 1).animate(animation),
-        child: SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(-0.2, 0),
-              end: const Offset(0, 0),
-            ).animate(animation),
-            child: row()));
+    return TransitionProvider.fadeInAndSlideInTransition(animation, row());
   }
 
   Widget row() {

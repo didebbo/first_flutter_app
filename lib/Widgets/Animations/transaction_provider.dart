@@ -10,7 +10,7 @@ class TransitionProvider {
 
   static Animation<double> _opacityFadeInAnimation(
       Animation<double> animation) {
-    return Tween<double>(begin: 1, end: 0).animate(animation);
+    return Tween<double>(begin: 0, end: 1).animate(animation);
   }
 
   static Animation<double> _opacityFadeOutAnimation(
