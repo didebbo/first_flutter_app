@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/Widgets/Animations/transaction_provider.dart';
 import 'package:first_flutter_app/Widgets/input_field.dart';
 import 'package:first_flutter_app/Widgets/item_widget.dart';
 import 'package:flutter/material.dart';
@@ -51,22 +52,21 @@ class _HomePage extends State<HomePageView> {
             initialItemCount: widget.viewModel.items.length,
             itemBuilder: (context, index, animation) {
               var item = widget.viewModel.items[index];
-              return animatedListItemView(context, index, animation, item);
+              return animatedListItemView(animation, item);
             }));
   }
 
-  AnimatedListItemView animatedListItemView(
-      BuildContext context, int index, Animation<double> animation, Item item) {
-    return AnimatedListItemView(
-      context: context,
-      index: index,
-      animation: animation,
-      item: item,
-      onPressFavoriteIcon: () =>
-          setState(() => widget.viewModel.onPressFavoriteIcon(item)),
-      onPressDeleteIcon: () => setState(() => widget.viewModel
-          .onPressDeleteIcon(
-              item, animatedListItemView(context, index, animation, item))),
+  Widget animatedListItemView(Animation<double> animation, Item item) {
+    return TransitionProvider.fadeAndSlideTransition(
+      animation,
+      AnimatedListItemView(
+        item: item,
+        onPressFavoriteIcon: () =>
+            setState(() => widget.viewModel.onPressFavoriteIcon(item)),
+        onPressDeleteIcon: () => setState(
+          () => widget.viewModel.onPressDeleteIcon(animation, item),
+        ),
+      ),
     );
   }
 

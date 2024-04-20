@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
   uuid: ^3.0.4  # UUID
   logger: ^2.2.0
+  flutter_animate: ^4.5.0
 
 
   # The following adds the Cupertino Icons font to your application.

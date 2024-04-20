@@ -1,5 +1,6 @@
 import 'package:first_flutter_app/Utils/logger.dart';
 import 'package:first_flutter_app/Widgets/Animations/transaction_provider.dart';
+import 'package:first_flutter_app/Widgets/item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:first_flutter_app/Models/item.dart';
 
@@ -23,11 +24,16 @@ class HomePageViewModel {
         ?.insertItem(at, duration: Duration(milliseconds: milliseconds));
   }
 
-  removeItem(Item item, Widget widget) {
+  removeItem(Animation<double> animation, Item item) {
     var index = items.indexWhere((element) => element.id == item.id);
     animatedListKey.currentState?.removeItem(index, (context, animation) {
       items.removeAt(index);
-      return TransitionProvider.fadeAndSizeTransition(animation, widget);
+      return TransitionProvider.fadeAndSizeTransition(
+          animation,
+          AnimatedListItemView(
+              item: item,
+              onPressFavoriteIcon: () {},
+              onPressDeleteIcon: () {}));
     });
   }
 
@@ -59,8 +65,8 @@ class HomePageViewModel {
     }).toList();
   }
 
-  onPressDeleteIcon(Item forItem, Widget onWidget) {
-    removeItem(forItem, onWidget);
+  onPressDeleteIcon(Animation<double> animation, Item item) {
+    removeItem(animation, item);
   }
 
   setEditMode(bool editmode) => editMode = editmode;

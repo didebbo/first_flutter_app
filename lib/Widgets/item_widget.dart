@@ -1,28 +1,21 @@
 import 'package:first_flutter_app/Models/item.dart';
-import 'package:first_flutter_app/Widgets/Animations/transaction_provider.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedListItemView extends StatelessWidget {
   const AnimatedListItemView(
       {super.key,
-      required this.context,
-      required this.index,
-      required this.animation,
       required this.item,
       required this.onPressFavoriteIcon,
       required this.onPressDeleteIcon});
 
-  final BuildContext context;
-  final int index;
-  final Animation<double> animation;
   final Item item;
 
-  final VoidCallback onPressFavoriteIcon;
-  final VoidCallback onPressDeleteIcon;
+  final VoidCallback? onPressFavoriteIcon;
+  final VoidCallback? onPressDeleteIcon;
 
   @override
   Widget build(BuildContext context) {
-    return TransitionProvider.fadeAndSlideTransition(animation, row());
+    return row();
   }
 
   Widget row() {
