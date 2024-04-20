@@ -25,13 +25,31 @@ class Items {
       avatarColor: Colors.red,
       name: "Mario",
       surname: "Rossi",
-      isFavorite: false,
+      isFavorite: true,
     ),
     Item(
       avatarColor: Colors.green,
       name: "Giuseppe",
       surname: "Verdi",
       isFavorite: false,
+    ),
+    Item(
+      avatarColor: Colors.orange,
+      name: "Francesco",
+      surname: "Moretti",
+      isFavorite: true,
+    ),
+    Item(
+      avatarColor: Colors.cyan,
+      name: "Alessandro",
+      surname: "Ferrari",
+      isFavorite: false,
+    ),
+    Item(
+      avatarColor: Colors.purple,
+      name: "Fabio",
+      surname: "Bruno",
+      isFavorite: true,
     ),
   ];
 

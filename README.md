@@ -6,6 +6,13 @@ Nonostante questo, devo dire che la <u>_curva di apprenditmento è stata davvero
 
 La rapidità di sviluppo è davvero sorprendente. Anche nel realizzare componenti personalizzati, il framework offre strumenti che permettono quasi in tempo reale, di vedere un anteprima di ciò che stai sviluppando.
 
-Mi piacerebbe poterlo usare a livello professionale per poterne scoprire il potenziale a livello macroscopico. 
+Mi piacerebbe poterlo usare a livello aziendale per poterne scoprire il potenziale a livello macroscopico. 
 
-[![Preview](https://img.youtube.com/vi/tygfeYdU03c/0.jpg)](https://www.youtube.com/watch?v=tygfeYdU03c)
+[![Video Preview](preview/preview.jpg)](https://www.youtube.com/watch?v=siqixYANb34)
+
+![Screen Preview](<preview/Simulator Screenshot - iPhone 8 - 2024-04-20 at 11.29.09.png>)
+
+![Screen Preview](<preview/Simulator Screenshot - iPhone 8 - 2024-04-20 at 11.32.10.png>)
+
+
+
