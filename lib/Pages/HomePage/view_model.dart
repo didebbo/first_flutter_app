@@ -18,7 +18,7 @@ class HomePageViewModel {
   bool editMode = false;
 
   insertItem(Item item, int at, [int milliseconds = 0]) {
-    Log.d("insertItem at $at position");
+    LogManager.debug("insertItem at $at position");
     items.insert(at, item);
     animatedListKey.currentState
         ?.insertItem(at, duration: Duration(milliseconds: milliseconds));
