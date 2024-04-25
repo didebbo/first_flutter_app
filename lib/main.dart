@@ -1,4 +1,5 @@
 // ignore_for_file: unused_import
+import 'package:first_flutter_app/Utils/sqlite_database_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'package:first_flutter_app/Models/item.dart';
@@ -22,7 +23,5 @@ class MyApp extends StatelessWidget {
   }
 
   HomePageViewModel homepageViewModel() => HomePageViewModel(
-      appBarTitle: "My Favorite Friends",
-      appBarColor: Colors.pink.shade50,
-      items: Items.items);
+      appBarTitle: "My Favorite Friends", appBarColor: Colors.pink.shade50);
 }

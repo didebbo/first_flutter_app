@@ -22,7 +22,7 @@ class _HomePage extends State<HomePageView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(),
-        body: body(),
+        body: futureBody(),
         floatingActionButton:
             !widget.viewModel.editMode ? floatingActionButton() : null);
   }
@@ -33,6 +33,22 @@ class _HomePage extends State<HomePageView> {
       backgroundColor: widget.viewModel.appBarColor,
     );
   }
+
+  Widget futureBody() => FutureBuilder(
+      future: widget.viewModel.fetchItems(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return const Center(child: Text("Loading..."));
+          default:
+            if (snapshot.hasError) {
+              return const Center(child: Text("Error on fetch data"));
+            } else {
+              widget.viewModel.items = snapshot.data ?? [];
+              return body();
+            }
+        }
+      });
 
   Widget body() {
     onConfirm({required String name, required String surname}) => setState(() {

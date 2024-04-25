@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  uuid: ^3.0.4  # UUID
+  uuid: ^4.4.0  # UUID
   logger: ^2.2.0
   flutter_animate: ^4.5.0
 
@@ -38,6 +38,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  sqflite: ^2.3.3
+  path: ^1.9.0
 
 dev_dependencies:
   flutter_test:
