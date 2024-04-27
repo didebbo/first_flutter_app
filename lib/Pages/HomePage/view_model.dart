@@ -13,17 +13,16 @@ class HomePageViewModel {
 
   final String appBarTitle;
   final Color appBarColor;
-  late Future<void> fetchState;
+  late Future<void> fetchingData;
   late List<Item> items;
 
   final GlobalKey<AnimatedListState> animatedListKey = GlobalKey();
   bool editMode = false;
 
-  fetchData() async {
-    fetchState = Future.delayed(const Duration(seconds: 2), () async {
-      items = await DatabaseManager.readItems();
-    });
-  }
+  fetchData() async =>
+      fetchingData = Future.delayed(const Duration(seconds: 10), () async {
+        items = await DatabaseManager.readItems();
+      });
 
   insertItem(Item item, int at, [int milliseconds = 0]) {
     LogManager.debug("insertItem at $at position");

@@ -35,7 +35,7 @@ class _HomePage extends State<HomePageView> {
   }
 
   Widget futureBody() => FutureBuilder(
-      future: widget.viewModel.fetchState,
+      future: widget.viewModel.fetchingData,
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
@@ -46,8 +46,11 @@ class _HomePage extends State<HomePageView> {
       });
 
   Widget loader() {
-    return const Center(
-      child: CircularProgressIndicator(),
+    return Center(
+      child: CircularProgressIndicator(
+        backgroundColor: Colors.pink[50],
+        color: Colors.pink[100],
+      ),
     );
   }
 
