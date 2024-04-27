@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 class FadeInAnimatedListView extends StatefulWidget {
   const FadeInAnimatedListView({super.key, required this.viewModel});
-
   final HomePageViewModel viewModel;
 
   @override
