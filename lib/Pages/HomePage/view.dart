@@ -19,6 +19,12 @@ class HomePageView extends StatefulWidget {
 
 class _HomePage extends State<HomePageView> {
   @override
+  void initState() {
+    super.initState();
+    widget.viewModel.fetchItems();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(),
@@ -35,7 +41,7 @@ class _HomePage extends State<HomePageView> {
   }
 
   Widget futureBody() => FutureBuilder(
-      future: widget.viewModel.fetchItems(),
+      future: widget.viewModel.futureItems,
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
@@ -44,30 +50,29 @@ class _HomePage extends State<HomePageView> {
             if (snapshot.hasError) {
               return const Center(child: Text("Error on fetch data"));
             } else {
-              widget.viewModel.items = snapshot.data ?? [];
-              return body();
+              return body(snapshot.data ?? []);
             }
         }
       });
 
-  Widget body() {
+  Widget body(List<Item> data) {
     onConfirm({required String name, required String surname}) => setState(() {
           widget.viewModel.addItem(name: name, surname: surname);
         });
     return Stack(children: [
-      animatedListView(),
+      animatedListView(data),
       InputField(onConfirm: onConfirm, editMode: widget.viewModel.editMode)
     ]);
   }
 
-  Widget animatedListView() {
+  Widget animatedListView(List<Item> data) {
     return Container(
         padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
         child: AnimatedList(
             key: widget.viewModel.animatedListKey,
-            initialItemCount: widget.viewModel.items.length,
+            initialItemCount: data.length,
             itemBuilder: (context, index, animation) {
-              var item = widget.viewModel.items[index];
+              var item = data[index];
               return animatedListItemView(animation, item);
             }));
   }

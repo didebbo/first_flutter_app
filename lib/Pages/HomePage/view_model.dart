@@ -11,27 +11,31 @@ class HomePageViewModel {
 
   final String appBarTitle;
   final Color appBarColor;
-  List<Item> items = [];
+  late Future<List<Item>> futureItems;
 
   final GlobalKey<AnimatedListState> animatedListKey = GlobalKey();
   bool editMode = false;
 
   Future<List<Item>> fetchItems() async =>
-      items = await DatabaseManager.readItems();
+      futureItems = Future(() => DatabaseManager.readItems());
 
-  insertItem(Item item, int at, [int milliseconds = 0]) {
+  insertItem(Item item, int at, [int milliseconds = 0]) async {
+    final items = await futureItems;
     LogManager.debug("insertItem at $at position");
-    DatabaseManager.insertItem(item);
     items.insert(at, item);
+    futureItems = Future(() => items);
+    DatabaseManager.insertItem(item);
     animatedListKey.currentState
         ?.insertItem(at, duration: Duration(milliseconds: milliseconds));
   }
 
-  removeItem(Animation<double> animation, Item item) {
+  removeItem(Animation<double> animation, Item item) async {
+    final items = await futureItems;
     var index = items.indexWhere((element) => element.id == item.id);
+    items.removeAt(index);
+    futureItems = Future(() => items);
+    DatabaseManager.deleteItem(item.id);
     animatedListKey.currentState?.removeItem(index, (context, animation) {
-      DatabaseManager.deleteItem(item.id);
-      items.removeAt(index);
       return TransitionProvider.fadeAndSizeTransition(
           animation,
           AnimatedListItemView(
@@ -41,7 +45,8 @@ class HomePageViewModel {
     });
   }
 
-  addItem({required String name, required String surname}) {
+  addItem({required String name, required String surname}) async {
+    final items = await futureItems;
     var item = Item(
         id: const Uuid().v4(),
         avatarColor: Item.randomColor(),
@@ -53,15 +58,16 @@ class HomePageViewModel {
     setEditMode(false);
   }
 
-  onPressFavoriteIcon(Item forItem) {
-    items = items.map((element) {
-      if (forItem.id != element.id) {
-        return element;
-      }
-      var newelement = element;
-      newelement.isFavorite = !newelement.isFavorite;
-      return newelement;
-    }).toList();
+  onPressFavoriteIcon(Item forItem) async {
+    final items = await futureItems;
+    futureItems = Future(() => items.map((element) {
+          if (forItem.id != element.id) {
+            return element;
+          }
+          var newelement = element;
+          newelement.isFavorite = !newelement.isFavorite;
+          return newelement;
+        }).toList());
   }
 
   onPressDeleteIcon(Animation<double> animation, Item item) {
