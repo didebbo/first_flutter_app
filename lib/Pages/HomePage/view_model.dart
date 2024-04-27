@@ -7,7 +7,9 @@ import 'package:first_flutter_app/Models/item.dart';
 import 'package:uuid/uuid.dart';
 
 class HomePageViewModel {
-  HomePageViewModel({required this.appBarTitle, required this.appBarColor});
+  HomePageViewModel({required this.appBarTitle, required this.appBarColor}) {
+    fetchData();
+  }
 
   final String appBarTitle;
   final Color appBarColor;

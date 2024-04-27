@@ -19,12 +19,6 @@ class HomePageView extends StatefulWidget {
 
 class _HomePage extends State<HomePageView> {
   @override
-  void initState() {
-    super.initState();
-    widget.viewModel.fetchData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(),
@@ -45,15 +39,17 @@ class _HomePage extends State<HomePageView> {
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return const Center(child: Text("Loading..."));
+            return loader();
           default:
-            if (snapshot.hasError) {
-              return const Center(child: Text("Error on fetch data"));
-            } else {
-              return body();
-            }
+            return body();
         }
       });
+
+  Widget loader() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
 
   Widget body() {
     onConfirm({required String name, required String surname}) => setState(() {
