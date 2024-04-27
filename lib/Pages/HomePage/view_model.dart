@@ -20,7 +20,7 @@ class HomePageViewModel {
   bool editMode = false;
 
   fetchData() async =>
-      fetchingData = Future.delayed(const Duration(seconds: 10), () async {
+      fetchingData = Future.delayed(const Duration(seconds: 2), () async {
         items = await DatabaseManager.readItems();
       });
 
