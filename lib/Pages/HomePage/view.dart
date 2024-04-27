@@ -78,7 +78,7 @@ class _HomePage extends State<HomePageView> {
 }
 
 class _AnimatedListView extends StatefulWidget {
-  const _AnimatedListView({super.key, required this.viewModel});
+  const _AnimatedListView({required this.viewModel});
 
   final HomePageViewModel viewModel;
 
@@ -88,15 +88,9 @@ class _AnimatedListView extends StatefulWidget {
 
 class _AnimatedListViewState extends State<_AnimatedListView>
     with SingleTickerProviderStateMixin {
-  late AnimationController _fadeController;
-
-  @override
-  void initState() {
-    super.initState();
-    _fadeController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 400));
-    _fadeController.forward();
-  }
+  late final AnimationController _fadeController = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 400))
+    ..forward();
 
   @override
   Widget build(BuildContext context) => animatedListView();
