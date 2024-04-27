@@ -1,10 +1,7 @@
-import 'package:first_flutter_app/Widgets/Animations/transaction_provider.dart';
+import 'package:first_flutter_app/Widgets/animated_list.dart';
 import 'package:first_flutter_app/Widgets/input_field.dart';
-import 'package:first_flutter_app/Widgets/item_widget.dart';
 import 'package:flutter/material.dart';
-
 import 'package:first_flutter_app/Pages/HomePage/view_model.dart';
-import 'package:first_flutter_app/Models/item.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key, required this.viewModel});
@@ -59,7 +56,7 @@ class _HomePage extends State<HomePageView> {
           widget.viewModel.addItem(name: name, surname: surname);
         });
     return Stack(children: [
-      _AnimatedListView(viewModel: widget.viewModel),
+      FadeInAnimatedListView(viewModel: widget.viewModel),
       InputField(onConfirm: onConfirm, editMode: widget.viewModel.editMode)
     ]);
   }
@@ -74,52 +71,5 @@ class _HomePage extends State<HomePageView> {
           Icons.add,
           color: Colors.pink[400],
         ));
-  }
-}
-
-class _AnimatedListView extends StatefulWidget {
-  const _AnimatedListView({required this.viewModel});
-
-  final HomePageViewModel viewModel;
-
-  @override
-  State<StatefulWidget> createState() => _AnimatedListViewState();
-}
-
-class _AnimatedListViewState extends State<_AnimatedListView>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _fadeController = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 400))
-    ..forward();
-
-  @override
-  Widget build(BuildContext context) => animatedListView();
-
-  Widget animatedListView() {
-    return TransitionProvider.fadeTransition(
-        _fadeController,
-        Container(
-            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            child: AnimatedList(
-                key: widget.viewModel.animatedListKey,
-                initialItemCount: widget.viewModel.items.length,
-                itemBuilder: (context, index, animation) {
-                  var item = widget.viewModel.items[index];
-                  return animatedListItemView(animation, item);
-                })));
-  }
-
-  Widget animatedListItemView(Animation<double> animation, Item item) {
-    return TransitionProvider.fadeAndSlideTransition(
-      animation,
-      AnimatedListItemView(
-        item: item,
-        onPressFavoriteIcon: () =>
-            setState(() => widget.viewModel.onPressFavoriteIcon(item)),
-        onPressDeleteIcon: () => setState(
-          () => widget.viewModel.onPressDeleteIcon(animation, item),
-        ),
-      ),
-    );
   }
 }

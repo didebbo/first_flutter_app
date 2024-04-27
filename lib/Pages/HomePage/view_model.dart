@@ -1,7 +1,7 @@
 import 'package:first_flutter_app/Utils/logger.dart';
 import 'package:first_flutter_app/Utils/sqlite_database_manager.dart';
 import 'package:first_flutter_app/Widgets/Animations/transaction_provider.dart';
-import 'package:first_flutter_app/Widgets/item_widget.dart';
+import 'package:first_flutter_app/Widgets/item.dart';
 import 'package:flutter/material.dart';
 import 'package:first_flutter_app/Models/item.dart';
 import 'package:uuid/uuid.dart';
