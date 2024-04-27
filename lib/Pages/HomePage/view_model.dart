@@ -11,16 +11,16 @@ class HomePageViewModel {
 
   final String appBarTitle;
   final Color appBarColor;
-  List<Item> items = [];
-  late Future<List<Item>> futureItems;
+  late Future<void> fetchState;
+  late List<Item> items;
 
   final GlobalKey<AnimatedListState> animatedListKey = GlobalKey();
   bool editMode = false;
 
-  fetchItems() async {
-    futureItems = Future.delayed(
-        const Duration(seconds: 2), () => DatabaseManager.readItems());
-    items = await futureItems;
+  fetchData() async {
+    fetchState = Future.delayed(const Duration(seconds: 2), () async {
+      items = await DatabaseManager.readItems();
+    });
   }
 
   insertItem(Item item, int at, [int milliseconds = 0]) {

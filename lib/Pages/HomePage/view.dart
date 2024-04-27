@@ -21,7 +21,7 @@ class _HomePage extends State<HomePageView> {
   @override
   void initState() {
     super.initState();
-    widget.viewModel.fetchItems();
+    widget.viewModel.fetchData();
   }
 
   @override
@@ -41,7 +41,7 @@ class _HomePage extends State<HomePageView> {
   }
 
   Widget futureBody() => FutureBuilder(
-      future: widget.viewModel.futureItems,
+      future: widget.viewModel.fetchState,
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
