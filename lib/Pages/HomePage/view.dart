@@ -50,29 +50,29 @@ class _HomePage extends State<HomePageView> {
             if (snapshot.hasError) {
               return const Center(child: Text("Error on fetch data"));
             } else {
-              return body(snapshot.data ?? []);
+              return body();
             }
         }
       });
 
-  Widget body(List<Item> data) {
+  Widget body() {
     onConfirm({required String name, required String surname}) => setState(() {
           widget.viewModel.addItem(name: name, surname: surname);
         });
     return Stack(children: [
-      animatedListView(data),
+      animatedListView(),
       InputField(onConfirm: onConfirm, editMode: widget.viewModel.editMode)
     ]);
   }
 
-  Widget animatedListView(List<Item> data) {
+  Widget animatedListView() {
     return Container(
         padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
         child: AnimatedList(
             key: widget.viewModel.animatedListKey,
-            initialItemCount: data.length,
+            initialItemCount: widget.viewModel.items.length,
             itemBuilder: (context, index, animation) {
-              var item = data[index];
+              var item = widget.viewModel.items[index];
               return animatedListItemView(animation, item);
             }));
   }

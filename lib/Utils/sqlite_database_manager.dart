@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseManager {
-  static late Database? _database = null;
+  static Database? _database;
 
   static Future<void> _openDB() async {
     _database = await openDatabase(
